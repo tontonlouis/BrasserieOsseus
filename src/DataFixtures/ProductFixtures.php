@@ -18,7 +18,12 @@ class ProductFixtures extends Fixture
                 ->setDescription("Description de la bière n°$i")
                 ->setPrice($i*0.75)
                 ->setQuatity($i * 3)
-                ->setTitle("La bière os $i a son carractère");
+                ->setTitle("La bière os $i a son carractère")
+                ->setStyle('Belge')
+                ->setColor('Ambré')
+                ->setDegrees(7.6)
+                ->setUpdatedAt(new \DateTime('now'));
+
 
             $manager->persist($product);
         }

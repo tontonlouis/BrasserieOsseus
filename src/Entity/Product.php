@@ -14,6 +14,16 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Product
 {
+
+    const COLOR = [
+        'Blonde',
+        'Ambrée',
+        'Brune',
+        'Blanche',
+        'Noire',
+        'Verte'
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
