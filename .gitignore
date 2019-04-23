@@ -1,9 +1,11 @@
+###> IntelliJ IDEA ###
+/.idea/
+###< IntelliJ IDEA ###
 
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
 /.env.*.local
-/.idea/
 /public/bundles/
 /var/
 /vendor/
