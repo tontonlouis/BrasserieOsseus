@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+   <div class="row mt-4">
+      <div class="col-md-6">
+         <div class="card">
+            <h3 class="card-header">
+               Notre magasin 
+            </h3>
+            <div class="card-body">
+               <img src="{{ asset('images/magasin.jpg')| imagine_filter('my_medium') }}" alt="" class="card-img">
+               <div class="card-text mt-3">
+                  <adress>
+                     Nouvelle avancée majeure dans notre projet : le choix du local est fait! 👍 <br>
+                     Nous espérons donc vous accueillir nombreux à la fin de cet été au : <br>
+                     19 place Roger Salengro <br>
+                     59140 Dunkerque (à 2 pas de la rue de la soif)
+                  </adress>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6">
+         <div class="card">
+            <h3 class="card-header">
+               Nous contacter
+            </h3>
+            <div class="card-body">
+               {{ form_start(form) }}
+                  {{ form_rest(form) }}
+               <input type="submit" value="Envoyer" class="btn btn-primary">
+               {{ form_end(form) }}
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

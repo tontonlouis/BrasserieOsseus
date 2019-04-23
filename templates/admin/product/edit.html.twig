@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gestions des produits' %}
+
+ {% block body %}
+
+  <h1>Éditer le produit</h1>
+
+  {{ include('admin/product/_form.html.twig',{form: form, button: 'Enregistrer'}) }}
+
+
+ {% endblock %}

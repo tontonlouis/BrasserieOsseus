@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gestions des produits' %}
+
+ {% block body %}
+
+
+     <h1>Gestions des produits</h1>
+     <a href="{{ path('admin.product.create') }}" class="btn btn-primary">Ajouter un produit</a>
+            <table class="table table-striped table-dark table-sm mt-3">
+                <thead>
+                    <th>Name</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>
+                            <a class="btn btn-secondary" href="{{ path('admin.product.edit', {'id': product.id}) }}">Éditer</a>
+
+                            <form method="post" action="{{ path('admin.product.delete', {id: product.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes-vous vraiment sûr ?')" >
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+ {% endblock %}

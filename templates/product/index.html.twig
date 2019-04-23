@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Présentation de la brasserie' %}
+
+ {% block body %}
+
+
+  <h1>Nos produits</h1>
+
+
+   <div class="row">
+  {% for product in products %}
+     <div class="col-md-4">
+      <div class="card mt-4">
+       <h4 class="card-header"><a href="{{ path('product.show', {id: product.id}) }}">{{ product.name }}</a></h4>
+       <div class="card-body">
+        {% if product.pictures %}
+            <a href="{{ path('product.show', {id: product.id}) }}"><img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="" class="card-img-top"></a>
+        {% endif %}
+           <div class="card-text mt-2">
+               <h5> {{ product.title }}</h5>
+              <p class="text-right"><strong>{{ product.price }} €</strong></p>
+           </div>
+       </div>
+      </div>
+     </div>
+  {% endfor %}
+   </div>
+
+
+
+{% endblock %}
