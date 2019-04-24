@@ -39,8 +39,7 @@ class ProductType extends AbstractType
                 'choices' => $this->getChoicesColor()
             ])
             ->add('degrees', IntegerType::class)
-            ->add('imageFile', FileType::class)
-        ;
+            ->add('imageFile', FileType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
