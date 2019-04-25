@@ -1,8 +1,13 @@
 @font-face {
     font-family: ShineBrush;
-    src: url("ShineBrush.ttf");
+    src: url("../fonts/ShineBrush.ttf");
 }
 
-.police{
-    font-family: ShineBrush;
+@font-face {
+    font-family: xBone;
+    src: url("../fonts/xbones/xbones.ttf");
+}
+
+h1{
+    font-family: xBone;
 }

@@ -7,20 +7,38 @@
 
     <div class="row mt-4">
         <div class="col">
-            <p>
+            <p class="text-justify">
             La Brasserie Osseus (Ossuaire en latin) est née dans l’esprit d’amis voulant allier leurs passions pour ces excellents breuvages houblonnés et la musique métal. Nous avons fait le choix de mettre une partie de notre identité et de la faire transparaître dans nos bières et dans notre brasserie que ce soit par l’origine du nom, les visuels, ou encore les recettes pour le plaisir de vos squelettes.
             Nous nous reconnaissons dans des modèles de « Craft beer » américaines, scandinaves ou encore irlandaises et plutôt que de continuer de brasser en amateur au fond du garage, nous avons fait le choix de vous faire partager nos produits avec le désir de vous surprendre tant par des saveurs loin des standards industriels que par des étiquettes originales.
             </p>
-            <p> L’ossature de de notre gamme a donc été élaborée autour de deux types de bières :</p>
-            <ul>
-                <li> Une Bière dorée, houblonnée, légèrement amer et sèche, un mélange de tradition belge et d’extravagance scandinave dans l’utilisation des houblons.</li>
-                <li> Une Bière Cuivrée, Inspirée des Amber ales américaines, légère en alcool, Amère et pleine de saveurs.</li>
-            </ul>
-            <p>
-            Et comme la recherche de nouvelles saveurs est une priorité, nous vous proposerons tous les 3 mois une bière saisonnière où l’on essaiera de vous surprendre encore plus par des breuvages atypiques ou au contraire des classiques retravaillés à la sauce Osseus !
-            Enfin, comme votre avis est très important pour nous, des événements réguliers seront organisés afin de pouvoir obtenir votre ressenti sur les bières qui vous ont été proposées mais aussi pour savoir celles que vous voudriez que l’on vous propose.
-            Nous voulons que venir acheter des bières soit un plaisir pour vous comme il en sera un pour nous de vous accueillir !
-            </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ asset('images/graine.jpg') | imagine_filter('my_medium') }}" alt="" class="rounded float-left">
+                </div>
+                <div class="col-md-8 d-flex align-items-center">
+
+                    <ul class="list-group list-group-flush ">
+                        L’ossature de de notre gamme a donc été élaborée autour de deux types de bières :
+                        <li class="list-group-item"> Une Bière dorée, houblonnée, légèrement amer et sèche, un mélange de tradition belge et d’extravagance scandinave dans l’utilisation des houblons.</li>
+                        <li class="list-group-item"> Une Bière Cuivrée, Inspirée des Amber ales américaines, légère en alcool, Amère et pleine de saveurs.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col-md-8 d-flex align-items-center">
+                    <p>
+                        Et comme la recherche de nouvelles saveurs est une priorité, nous vous proposerons tous les 3 mois une bière saisonnière où l’on essaiera de vous surprendre encore plus par des breuvages atypiques ou au contraire des classiques retravaillés à la sauce Osseus !
+                        Enfin, comme votre avis est très important pour nous, des événements réguliers seront organisés afin de pouvoir obtenir votre ressenti sur les bières qui vous ont été proposées mais aussi pour savoir celles que vous voudriez que l’on vous propose.
+                        Nous voulons que venir acheter des bières soit un plaisir pour vous comme il en sera un pour nous de vous accueillir !
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ asset('images/tank.jpg') | imagine_filter('my_medium') }}" alt="" class="rounded float-left">
+                </div>
+            </div>
+
         </div>
     </div>
 

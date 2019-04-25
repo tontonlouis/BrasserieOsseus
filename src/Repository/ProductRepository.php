@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\Expr;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -34,6 +35,14 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
 
+    }
+
+    /**
+     * @return Query
+     */
+    public function findAllQuery():Query
+    {
+        return $this->createQueryBuilder('p')->getQuery();
     }
     // /**
     //  * @return Product[] Returns an array of Product objects
