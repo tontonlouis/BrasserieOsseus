@@ -3,14 +3,15 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
- * @Vich\Uploadable
  */
 class Product
 {
@@ -71,22 +72,31 @@ class Product
      */
     private $degrees;
 
-    /**
-     * @var File|null
-     * @Vich\UploadableField(mapping="product_image", fileNameProperty="pictures")
-     */
-    private $imageFile;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $pictures;
-
-    /**
+     /**
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $new;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="product", orphanRemoval=true, cascade={"persist"})
+     */
+    private $pictures;
+
+    /**
+     * @Assert\All(
+     *     {@Assert\Image(mimeTypes="image/jpeg")})
+     */
+    private $picturesFiles;
+
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -253,46 +263,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getPictures(): ?string
-    {
-        return $this->pictures;
-    }
-
-    /**
-     * @param string|null $pictures
-     * @return Product
-     */
-    public function setPictures(?string $pictures): self
-    {
-        $this->pictures = $pictures;
-
-        return $this;
-    }
-
-    /**
-     * @return File|null
-     */
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param File|null $imageFile
-     * @return Product
-     */
-    public function setImageFile(?File $imageFile): Product
-    {
-        $this->imageFile = $imageFile;
-        if ($this->imageFile instanceof UploadedFile){
-            $this->updated_at = new \DateTime('now');
-        }
-        return $this;
-    }
-
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
@@ -302,6 +272,83 @@ class Product
     {
         $this->updated_at = $updated_at;
 
+        return $this;
+    }
+
+    public function getNew(): ?bool
+    {
+        return $this->new;
+    }
+
+    public function setNew(bool $new): self
+    {
+        $this->new = $new;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getProduct() === $this) {
+                $picture->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPicture(): ?Picture
+    {
+        if($this->pictures->isEmpty())
+        {
+            return null;
+        }
+
+        return $this->pictures->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPicturesFiles()
+    {
+        return $this->picturesFiles;
+    }
+
+    /**
+     * @param mixed $picturesFiles
+     * @return Product
+     */
+    public function setPicturesFiles($picturesFiles)
+    {
+        foreach ($picturesFiles as $picturesFile)
+        {
+           $picture = new Picture();
+           $picture->setImageFile($picturesFile);
+           $this->addPicture($picture);
+        }
+        $this->picturesFiles = $picturesFiles;
         return $this;
     }
 

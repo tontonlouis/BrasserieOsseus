@@ -19,7 +19,7 @@
                         <td>
                             <a class="btn btn-secondary" href="{{ path('admin.product.edit', {'id': product.id}) }}">Éditer</a>
 
-                            <form method="post" action="{{ path('admin.product.delete', {id: product.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes-vous vraiment sûr ?')" >
+                            <form method="post" action="{{ path('admin.picture.delete', {id: product.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes-vous vraiment sûr ?')" >
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
                                 <button class="btn btn-danger">Supprimer</button>

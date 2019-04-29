@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
+  <component name="CompassSettings">
+    <option name="compassConfigPath" value="C:\wamp64\www\BrasserieOsseuse\node_modules\compass\index.js" />
+    <option name="compassExecutableFilePath" value="C:\wamp64\www\BrasserieOsseuse\node_modules\compass\index.js" />
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">

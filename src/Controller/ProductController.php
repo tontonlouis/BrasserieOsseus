@@ -26,7 +26,7 @@ class ProductController extends AbstractController
     public function index(PaginatorInterface $paginator, Request $request)
     {
 
-        $paginator = $paginator->paginate($this->repo->findAllQuery(),  $request->query->getInt('page', 1),5);
+        $paginator = $paginator->paginate($this->repo->findAllQuery(),  $request->query->getInt('page', 1),6);
 
         return $this->render('product/index.html.twig',[
             'current_menu' => 'presentation',

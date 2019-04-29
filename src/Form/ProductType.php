@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -39,7 +40,13 @@ class ProductType extends AbstractType
                 'choices' => $this->getChoicesColor()
             ])
             ->add('degrees', IntegerType::class)
-            ->add('imageFile', FileType::class);
+            ->add('picturesFiles', FileType::class,[
+                'required' => false,
+                'multiple' => true
+            ])
+            ->add('new', CheckboxType::class,[
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

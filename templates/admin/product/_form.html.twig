@@ -6,17 +6,27 @@
         </div>
 
         <div class="row">
-                <div class="col-md-4">{{ form_row(form.quatity) }}</div>
-                <div class="col-md-4">{{ form_row(form.degrees) }}</div>
-                <div class="col-md-4">{{ form_row(form.price) }}</div>
+                <div class="col-md-3">{{ form_row(form.quatity) }}</div>
+                <div class="col-md-3">{{ form_row(form.degrees) }}</div>
+                <div class="col-md-3">{{ form_row(form.price) }}</div>
+                <div class="col-md-3 d-flex align-items-center mt-4">{{ form_row(form.new) }}</div>
         </div>
 
         <div class="row">
                 <div class="col-md-4">{{ form_row(form.style) }}</div>
                 <div class="col-md-4">{{ form_row(form.color) }}</div>
-                <div class="col-md-4">{{ form_row(form.imageFile) }}</div>
+                <div class="col-md-4">{{ form_row(form.picturesFiles) }}</div>
         </div>
-
+        <div class="row flex">
+                {% for picture in product.pictures %}
+                        <div class="col" style="flex: none">
+                                <img src="{{ vich_uploader_asset(picture, 'imageFile')| imagine_filter('my_icon2') }}" alt="">
+                                <a href="{{ path('admin.picture.delete', {id: picture.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}" class="btn btn-danger">
+                                       Supprimer
+                                </a>
+                        </div>
+                {% endfor %}
+        </div>
         <div class="row">
                 <div class="col-md-12">{{ form_row(form.description) }}</div>
         </div>
