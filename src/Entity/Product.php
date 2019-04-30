@@ -93,9 +93,15 @@ class Product
      */
     private $picturesFiles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="product")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -351,5 +357,46 @@ class Product
         $this->picturesFiles = $picturesFiles;
         return $this;
     }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getProduct() === $this) {
+                $comment->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+    public function getComment(): ?Comment
+    {
+        if($this->comments->isEmpty())
+        {
+            return null;
+        }
+
+        return $this->comments->first();
+    }
+
 
 }
