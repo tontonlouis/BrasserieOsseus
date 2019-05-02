@@ -15,6 +15,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "compass": "^0.1.1"
+        "compass": "^0.1.1",
+        "jquery": "^3.4.1"
     }
 }

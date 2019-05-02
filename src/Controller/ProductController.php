@@ -5,14 +5,14 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Product;
 use App\Form\CommentType;
-use App\Repository\CommentRepository;
 use App\Repository\ProductRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use App\Repository\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
@@ -53,11 +53,19 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/produits/{id}", name="product.show")
+     * @Route("/produits/{slug}-{id}", name="product.show", requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
-    public function show(Product $product, Request $request, PaginatorInterface $paginator)
+    public function show(Product $product, string $slug, Request $request, PaginatorInterface $paginator)
     {
+
+        if ($slug !== $product->getSlug())
+        {
+            return $this->redirectToRoute('product.show', [
+                'id' => $product->getId(),
+                'slug' => $product->getSlug()
+            ],301);
+        }
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
@@ -82,6 +90,7 @@ class ProductController extends AbstractController
             'comments' => $paginator,
             'form_comment' => $form->createView()
         ]);
+
     }
 
 

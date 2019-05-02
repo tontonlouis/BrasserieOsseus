@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\Product;
 use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/contact",name="contact")
+     * @Route("/contact", name="contact")
      * @return Response
      */
     public function contact(Request $request, ContactNotification $mailer)
@@ -45,6 +46,6 @@ class HomeController extends AbstractController
         return $this->render('home/contact.html.twig', [
             'current_menu' => 'contact',
             'form' => $form->createView()
-            ]);
+        ]);
     }
 }

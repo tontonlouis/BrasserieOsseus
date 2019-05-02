@@ -68,6 +68,16 @@
          <div class="col-md-6">
              <h4>Description</h4>
              <p>{{ product.description }}</p>
+
+             <ul class="notes-echelle">
+
+                 {% for i in 1..10  %}
+                     <li>
+                         <label for="note{{ i }}" title="Note&nbsp;: {{ i }} sur 10">{{ i }}</label>
+                         <input type="radio" name="notesA" id="note{{ i }}" value="{{ i }}" />
+                     </li>
+                 {% endfor %}
+             </ul>
          </div>
      </div>
 

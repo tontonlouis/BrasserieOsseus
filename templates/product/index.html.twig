@@ -12,15 +12,15 @@
       {% for product in products %}
          <div class="col-md-4">
           <div class="card mt-4">
-           <h4 class="card-header"><a href="{{ path('product.show', {id: product.id}) }}">{{ product.name }}</a></h4>
+           <h4 class="card-header"><a href="{{ path('product.show', {'slug': product.slug ,'id': product.id}) }}">{{ product.name }}</a></h4>
               {% if product.new %}
                   <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
               {% endif %}
            <div class="card-body">
                 {% if product.picture %}
-                    <a href="{{ path('product.show', {id: product.id}) }}"><img src="{{ vich_uploader_asset(product.picture, 'imageFile') }}" alt="" class="card-img-top"></a>
+                    <a href="{{ path('product.show', {'slug': product.slug ,'id': product.id}) }}"><img src="{{ vich_uploader_asset(product.picture, 'imageFile') }}" alt="" class="card-img-top"></a>
                     {% else %}
-                    <a href="{{ path('product.show', {id: product.id}) }}"><img src="{{ asset('images/empty.jpg') }}" alt="" class="card-img-top"></a>
+                    <a href="{{ path('product.show', {'slug': product.slug , 'id': product.id}) }}"><img src="{{ asset('images/empty.jpg') }}" alt="" class="card-img-top"></a>
                 {% endif %}
                <div class="card-text mt-2">
                    <h5> {{ product.title }}</h5>
