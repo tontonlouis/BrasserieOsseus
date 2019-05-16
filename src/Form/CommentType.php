@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,6 +15,7 @@ class CommentType extends AbstractType
         $builder
             ->add('pseudo')
             ->add('message')
+            ->add('note', HiddenType::class)
 //            ->add('createdAt')
 //            ->add('product')
         ;

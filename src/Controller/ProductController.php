@@ -80,8 +80,12 @@ class ProductController extends AbstractController
             $this->em->persist($comment);
             $this->em->flush();
             $this->addFlash('success', 'Votre commentaire a bien été pris en compte');
+            //$paginator = $paginator->paginate($this->repoComment->findAllQuery($product), $request->query->getInt('page', 1 ), 5);
+
             $this->redirectToRoute('product.show' , [
-                'id' => $product->getId()
+                'id' => $product->getId(),
+                'slug' => $product->getSlug(),
+                'comments' => $paginator
             ]);
         }
 

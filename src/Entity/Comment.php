@@ -36,6 +36,11 @@ class Comment
      */
     private $product;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $note;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
@@ -90,6 +95,18 @@ class Comment
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getNote(): ?int
+    {
+        return $this->note;
+    }
+
+    public function setNote(?int $note): self
+    {
+        $this->note = $note;
 
         return $this;
     }

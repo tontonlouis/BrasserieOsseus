@@ -1,4 +1,4 @@
-@import url("~compass/index.js");
+@import "~compass-mixins-fixed/lib/compass/css3";
 
 $brand-primary:         #428bca;
 $brand-success:         #5cb85c;
@@ -109,26 +109,12 @@ body {
   }
 }
 
-h1 {
-  display: block;
-  clear: both;
-  width: 96%;
-  margin: 25px auto;
-  font-family: "Pacifico", cursive;
-  font-size: 64px;
-  font-weight: bold;
-  text-align: center;
-  background: -webkit-linear-gradient($brand-info, $brand-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 pre {
   @include make-column-xs(12, $grid-gutter-width);
   @include make-column-sm(6, $grid-gutter-width);
   margin: ($grid-gutter-width / 2) auto;
   padding: (($grid-gutter-width / 2) - 5);
-  font-family: Consolas, Menlo, Courier, monsopace;
+  font-family: Consolas, Menlo, Courier, monsopace, serif;
   font-size: 13px;
   line-height: 1.5;
   border: 1px solid #ddd;
@@ -463,7 +449,7 @@ ul.thumbnails > li {
 .clo { color: #93a1a1; }
 
 .kwd,
-.prettyprint
+.prettyprint,
 .tag { color: #1e347b; }
 
 .typ,
@@ -498,4 +484,75 @@ ul.thumbnails > li {
 .lt-ie9 .prettyprint ol.linenums {
   margin:       0;
   margin-left:  33px;
+}
+
+/******************************************************/
+////////////////////// RATING BEER /////////////////////
+/******************************************************/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+
+$star_bg: #ccc;
+$star_bg_active: #f39c12;
+$star_bg_hover: red;
+
+.main {
+  text-align: center;
+  margin: 100px auto;
+}
+
+.item-star {
+  overflow: hidden;
+  display: inline-block;
+  margin: 10px 0 10px;
+  text-align: center;
+  input {
+    &:checked {
+      & ~ label {
+        color: $star_bg_active;
+      }
+    }
+  }
+  &:hover {
+    label {
+      &:hover {
+        color: $star_bg_hover;
+        & ~ label {
+          color: $star_bg_hover;
+        }
+      }
+    }
+  }
+  .star-rating {
+    float: right;
+    margin-right: 5px;
+  }
+  input {
+    display: none;
+  }
+  label {
+    float: right;
+    font-size: 35px;
+    margin: 0 15px;
+    color: $star_bg;
+    display: block;
+    @include transition(all 0.2s ease-in-out);
+  }
+}
+
+.credits {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 6px 15px;
+  width: 100%;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  font-family: "Roboto";
+  a {
+    color: #333;
+    font-size: 13x;
+    text-decoration: none;
+  }
 }

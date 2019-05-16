@@ -83,6 +83,11 @@ class Product
     private $new;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $promo;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="product", orphanRemoval=true, cascade={"persist"})
      */
     private $pictures;
@@ -97,6 +102,7 @@ class Product
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="product")
      */
     private $comments;
+
 
     public function __construct()
     {
@@ -396,6 +402,18 @@ class Product
         }
 
         return $this->comments->first();
+    }
+
+    public function getPromo(): ?int
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(?int $promo): self
+    {
+        $this->promo = $promo;
+
+        return $this;
     }
 
 

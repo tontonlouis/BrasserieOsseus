@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Commande</title>
+    </head>
+    <body>
+        <h4>{{ title }}</h4>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Quantité</th>
+                <th>Prix Unitaire</th>
+                <th>Prix Totale</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in paniers %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.quatity }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.quatity * product.price}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </body>
+</html>

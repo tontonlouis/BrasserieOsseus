@@ -3,18 +3,16 @@
 {% block title 'Présentation de la brasserie' %}
 
  {% block body %}
-
-
   <h1>Nos produits</h1>
-
-
    <div class="row">
       {% for product in products %}
          <div class="col-md-4">
           <div class="card mt-4">
            <h4 class="card-header"><a href="{{ path('product.show', {'slug': product.slug ,'id': product.id}) }}">{{ product.name }}</a></h4>
               {% if product.new %}
-                  <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
+                      <span class="ribbon top-right ribbon-success">
+                          <small>NEWS</small>
+                      </span>
               {% endif %}
            <div class="card-body">
                 {% if product.picture %}
@@ -26,6 +24,11 @@
                    <h5> {{ product.title }}</h5>
                   <p class="text-right"><strong>{{ product.price }} €</strong></p>
                </div>
+               {% if product.promo %}
+                   <span class="ribbon bottom-left ribbon-danger">
+                          <small>Promo :  -{{ product.promo }}%</small>
+                      </span>
+               {% endif %}
            </div>
           </div>
          </div>

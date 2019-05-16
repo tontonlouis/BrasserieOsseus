@@ -46,7 +46,8 @@ class ProductType extends AbstractType
             ])
             ->add('new', CheckboxType::class,[
                 'required' => false
-            ]);
+            ])
+            ->add('promo', IntegerType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

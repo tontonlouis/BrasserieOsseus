@@ -69,15 +69,7 @@
              <h4>Description</h4>
              <p>{{ product.description }}</p>
 
-             <ul class="notes-echelle">
 
-                 {% for i in 1..10  %}
-                     <li>
-                         <label for="note{{ i }}" title="Note&nbsp;: {{ i }} sur 10">{{ i }}</label>
-                         <input type="radio" name="notesA" id="note{{ i }}" value="{{ i }}" />
-                     </li>
-                 {% endfor %}
-             </ul>
          </div>
      </div>
 
@@ -86,8 +78,24 @@
          <div class="col">
              {{ form_start(form_comment) }}
                 {{ form_widget(form_comment) }}
+            <div class="row">
+                <label for="notesA">Notes : </label>
+                   <div class="items-wrap">
+                        <div class="item-star">
+                            {% for i in 1..10  %}
+                            <input id="star-row{{ i }}-col-{{ i }}" name="star-row{{ i }}" type="radio" value="{{ 6 - i }}" />
+                            <label for="star-row{{ i }}-col-{{ i }}">
+                                <i class="ion-beer"></i>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                <br>
+            </div>
+             <div class="row">
+                 <input type="submit" value="Commenter" class="btn btn-primary">
+             </div>
 
-             <input type="submit" value="Commenter" class="btn btn-primary">
              {{ form_end(form_comment) }}
          </div>
      </div>
@@ -100,7 +108,8 @@
                          {{ comment.pseudo }}
                      </div>
                      <div class="card-body">
-                         {{ comment.message }}
+                         {{ comment.message }}<br>
+                         {{ comment.note }}
                      </div>
                  </div>
              </div>
