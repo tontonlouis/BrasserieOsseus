@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Administration' %}
+
+{% block body %}
+
+    <h1>Administration</h1>
+
+    <table>
+        <tr>
+            <td><a href="{{ path('admin.product.index') }}" class="btn btn-primary">Gestion des produits</a></td>
+            <td><a href="{{ path('admin.order.index') }}" class="btn btn-primary">Gestion des commandes</a></td>
+            <td><a href="#" class="btn btn-primary">Gestion des utilisateurs</a></td>
+        </tr>
+    </table>
+
+{% endblock %}

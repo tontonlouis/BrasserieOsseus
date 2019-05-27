@@ -34,7 +34,7 @@ class ProductType extends AbstractType
                 'attr' => ['rows' => 8]
             ])
             ->add('price', IntegerType::class)
-            ->add('quatity', IntegerType::class)
+            ->add('quantity', IntegerType::class)
             ->add('style', TextType::class)
             ->add('color', ChoiceType::class,[
                 'choices' => $this->getChoicesColor()
@@ -47,7 +47,9 @@ class ProductType extends AbstractType
             ->add('new', CheckboxType::class,[
                 'required' => false
             ])
-            ->add('promo', IntegerType::class);
+            ->add('promo', IntegerType::class, [
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Brasserie Osseus{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         <link rel="icon" href="{{ asset('images/logo.ico') }}" />
             {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}{% endblock %}
@@ -19,22 +20,42 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {% if current_menu is defined and current_menu == 'presentation'%} active {% endif %}">
-                    <a class="nav-link" href="{{ path('product.index') }}">Nos produits</a>
+                    <a class="nav-link" href="{{ path('product.index') }}">{% trans %}Nos produits{% endtrans %}</a>
                 </li>
                 <li class="nav-item {% if current_menu is defined and current_menu == 'contact'%} active {% endif %}">
                     <a class="nav-link " href="{{ path('contact') }}">Contact</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin.product.index') }}">Administration</a>
+                    <a class="nav-link" href="{{ path('admin') }}">Administration</a>
+                </li>
+
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Langue
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{ path('langue', {lang: 'fr'}) }}">Français</a>
+                            <a class="dropdown-item" href="{{ path('langue', {lang: 'en'}) }}">Anglais</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
-            {% if app.user %}
-                <ul class="navbar-nav mr-right">
+            <ul class="navbar-nav mr-right">
+                {% if app.user %}
                     <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a></li>
-                </ul>
-            {% endif %}
+                {% endif %}
+                <li class="nav-item">
+                    <a href="#" class="notification">
+                        <i style="font-size: 2.5em; color: white;" class="fas fa-shopping-cart"></i>
+                        {% if app.user %}
+                            <span class="badge"></span>
+                        {% endif %}
+                    </a>
+                </li>
 
+            </ul>
         </div>
     </nav>
 

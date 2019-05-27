@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gestions des Commandes' %}
+
+ {% block body %}
+
+
+     <h1>Gestions des Commandes</h1>
+
+     <table class="table table-striped table-dark table-sm mt-3">
+         <thead>
+         <th>Commande n°</th>
+         <th>Action</th>
+         </thead>
+         <tbody>
+         {% for order in orders %}
+             <tr>
+                 <td>
+                     <a class="nav-link" style="color: #FFFFFF;" href="{{ path('admin.order.show', {id: order.id}) }}"> Commande n° {{ order.id }} </a>
+{#                     <a class="nav-link" style="color: #FFFFFF;" href="#"> Commande n° {{ order.id }} </a>#}
+                 </td>
+             </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+
+ {% endblock %}

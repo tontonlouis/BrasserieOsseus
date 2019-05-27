@@ -13,6 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    private $pdf;
+
+    public function __construct(DefaultController $pdf)
+    {
+        $this->pdf = $pdf;
+    }
+
     /**
      * @Route("/", name="home")
      * @return Response
@@ -36,7 +43,8 @@ class HomeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-           $mailer->notify($contact);
+           $pdf = $this->pdf->index();
+           $mailer->notify($contact, $pdf);
            $this->addFlash('success', "Email envoyé avec succès");
            $this->redirectToRoute('contact', [
                'current_menu' => 'contact'
@@ -47,5 +55,16 @@ class HomeController extends AbstractController
             'current_menu' => 'contact',
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/langue/{lang}", name="langue")
+     *
+     */
+    public function langue(Request $request, string $lang)
+    {
+        $request->getSession()->set('_locale', $lang);
+
+        return $this->redirectToRoute('home');
     }
 }

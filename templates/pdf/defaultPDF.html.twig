@@ -20,9 +20,9 @@
             {% for product in paniers %}
                 <tr>
                     <td>{{ product.name }}</td>
-                    <td>{{ product.quatity }}</td>
+                    <td>{{ product.quantity }}</td>
                     <td>{{ product.price }}</td>
-                    <td>{{ product.quatity * product.price}}</td>
+                    <td>{{ product.quantity * product.price}}</td>
                 </tr>
             {% endfor %}
             </tbody>

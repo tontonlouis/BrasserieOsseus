@@ -19,26 +19,20 @@ class ContactNotification
      */
     private $renderer;
 
-    /**
-     * @var DefaultController
-     */
-    private $pdf;
-    /**
+     /**
      * ContactNotification constructor.
      * @param Environment $renderer
      * @param \Swift_Mailer $mailer
      * @param DefaultController $pdf
      */
-    public function __construct(Environment $renderer, \Swift_Mailer $mailer, DefaultController $pdf)
+    public function __construct(Environment $renderer, \Swift_Mailer $mailer)
     {
         $this->mailer = $mailer;
         $this->renderer = $renderer;
-        $this->pdf = $pdf;
     }
 
-    public function notify(Contact $contact)
+    public function notify(Contact $contact, string $filename)
     {
-        $filename = $this->pdf->index();
         $message = (new \Swift_Message('Contact'))
             ->setFrom('contact@brasserie.fr')
             ->setTo('contact@brasserie.fr')

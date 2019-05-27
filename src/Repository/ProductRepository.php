@@ -2,12 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
-use Doctrine\ORM\Query\Expr;
-use phpDocumentor\Reflection\Types\Integer;
+use App\Entity\Product;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,21 +18,6 @@ class ProductRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Product::class);
-    }
-
-    public function findLastId()
-    {
-        $req = $this->createQueryBuilder('p');
-
-        $id = $req->select($req->expr()->max('p.id'))->getQuery()->getOneOrNullResult();
-
-        return $req->select('p')
-            ->groupBy('p')
-            ->having('p.id = :max_id')
-            ->setParameter('max_id', $id)
-            ->getQuery()
-            ->getResult();
-
     }
 
     /**

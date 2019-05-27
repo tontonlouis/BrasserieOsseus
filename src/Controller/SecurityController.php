@@ -23,4 +23,12 @@ class SecurityController extends AbstractController
             'last_username' => $lastUsername
         ]);
     }
+
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function admin()
+    {
+        return $this->render('admin/index.html.twig');
+    }
 }

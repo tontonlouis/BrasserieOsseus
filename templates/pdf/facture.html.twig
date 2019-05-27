@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Commande n° {{ order.id }}</title>
+</head>
+<body>
+<h4>Commande n° {{ order.id }}</h4>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Quantité</th>
+        <th>Prix Unitaire</th>
+        <th>Prix Totale</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for orderProd in products %}
+        <tr>
+            <td> {{ orderProd.product.name }}</td>
+            <td>{{ orderProd.product.quantity }}</td>
+            <td>{{ orderProd.product.price }}</td>
+            <td>{{ orderProd.product.quantity * orderProd.product.price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

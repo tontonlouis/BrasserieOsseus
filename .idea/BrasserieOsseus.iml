@@ -3,6 +3,7 @@
   <component name="CompassSettings">
     <option name="compassConfigPath" value="C:\wamp64\www\BrasserieOsseuse\node_modules\compass\index.js" />
     <option name="compassExecutableFilePath" value="C:\wamp64\www\BrasserieOsseuse\node_modules\compass\index.js" />
+    <option name="compassSupportEnabled" value="true" />
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />

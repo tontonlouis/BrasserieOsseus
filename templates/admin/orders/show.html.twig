@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Commande n° {{ order.id }} {% endblock %}
+
+ {% block body %}
+
+     <h1> Commande n° {{ order.id }} - {{ order.user.username }} </h1>
+     <div class="row">
+         <div class="col-md-10">
+             <table class="table table-striped">
+                 <thead class="thead-dark">
+                     <tr>
+                         <th>Nom</th>
+                         <th>Title</th>
+                         <th>Style</th>
+                         <th>Couleur</th>
+                         <th>Degrès</th>
+                         <th>Quantité</th>
+                         <th>Prix</th>
+                         <th>Prix TTC</th>
+                     </tr>
+                 </thead>
+                 <tdoby>
+                     {% set total = 0 %}
+
+                     {% for orderProd in products  %}
+                        <tr>
+                            <td>{{ orderProd.product.name }}</td>
+                            <td>{{ orderProd.product.title }}</td>
+                            <td>{{ orderProd.product.style }}</td>
+                            <td>{{ orderProd.product.color }}</td>
+                            <td>{{ orderProd.product.degrees }}</td>
+                            <td>{{ orderProd.product.quantity }}</td>
+                            <td>{{ orderProd.product.price }}</td>
+                            <td>{{ orderProd.product.price * 1.2 }}</td>
+                        </tr>
+                         {% set total = total + orderProd.product.price * 1.2%}
+                     {% endfor %}
+
+                     <tr>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td>Total</td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td>{{ total }} €</td>
+                     </tr>
+                 </tdoby>
+             </table>
+
+             <a href="{{ path('admin.order.bill', {id: order.id}) }}" class="btn btn-danger">Payer</a>
+         </div>
+     </div>
+
+ {% endblock %}
