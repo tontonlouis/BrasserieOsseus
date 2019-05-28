@@ -75,9 +75,8 @@ class AdminOrderController extends AbstractController
     {
         $orderProd = $order->getOrderProducts();
 
-        $pdf = $this->pdf->bill($order, $orderProd);
+       return $this->pdf->bill($order, $orderProd);
 
-        return new Response($pdf, 200, ['Content-Type' => 'application/pdf']);
     }
 
 }

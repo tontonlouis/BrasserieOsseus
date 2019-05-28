@@ -31,7 +31,7 @@ class Orders
 
     public function __construct()
     {
-        $this->orderProducts = new ArrayCollection();
+        $this->orderProducts = new ArrayCollection([OrderProduct::class]);
     }
 
     public function getId(): ?int

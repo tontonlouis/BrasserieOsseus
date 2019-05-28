@@ -85,4 +85,9 @@ class Picture
         $this->imageFile = $imageFile;
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->filename;
+    }
 }

@@ -4,64 +4,80 @@
 
  {% block body %}
 
-    <div class="jumbotron text-center mt-4">
-        <div class="row">
-            <div class="col-md-8">
-                {% if product.pictures is empty %}
-                <img src="{{ asset('images/empty.jpg') | imagine_filter('my_medium') }}" alt="">
-                {% else %}
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                    {% for picture in product.pictures %}
-                        <div class="carousel-item {% if loop.first %} active {% endif %}">
-                            <img src="{{ vich_uploader_asset(picture, 'imageFile')| imagine_filter('my_medium') }}" style="width: 70%;height: auto" alt="card-img-top">
-                        </div>
-                    {% endfor %}
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>                </div>
-                {% endif %}
-            </div>
-            <div class="col-md-4">
-                <h1>{{ product.name }}</h1>
-                <h3><strong>{{ product.price }} €</strong></h3>
+     <div class="jumbotron text-center mt-4">
+         <div class="row">
+             <div class="col-md-8">
+                 {% if product.pictures is empty %}
+                     <img src="{{ asset('images/empty.jpg') | imagine_filter('my_medium') }}" alt="">
+                 {% else %}
+                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                         <div class="carousel-inner">
+                             {% for picture in product.pictures %}
+                                 <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                     <img src="{{ vich_uploader_asset(picture, 'imageFile')| imagine_filter('my_medium') }}"
+                                          style="width: 70%;height: auto" alt="card-img-top">
+                                 </div>
+                             {% endfor %}
+                         </div>
+                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                             <span class="sr-only">Previous</span>
+                         </a>
+                         <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                             <span class="sr-only">Next</span>
+                         </a></div>
+                 {% endif %}
+             </div>
+             <div class="col-md-4">
+                 <h1>{{ product.name }}</h1>
+                 <h3><strong>{{ product.price }} €</strong></h3>
 
-                <button class="btn btn-primary">Contacter nous</button>
-            </div>
-        </div>
+                 <form action="{{ path('product.add', {id: product.id}) }}" class="mt-5">
+                     <div class="input-group">
+                         <select class="custom-select" id="nbrProduct">
+                             <option selected></option>
+                             <option value="1">1</option>
+                             <option value="2">2</option>
+                             <option value="3">3</option>
+                         </select>
+                         <div class="input-group-append">
+                             <button class="btn btn-outline-secondary" type="button">Réserver</button>
+                         </div>
+                     </div>
+                 </form>
 
-    </div>
+             </div>
+         </div>
+
+     </div>
 
      <div class="row">
          <div class="col-md-6">
              <table class="table table-striped">
                  <thead class="thead-dark">
-                    <tr>
-                        <th>Nom</th>
-                        <td>{{ product.name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Title</th>
-                        <td>{{ product.title }}</td>
-                    </tr>
-                    <tr>
-                        <th>Style</th>
-                        <td>{{ product.style }}</td>
-                    </tr>
-                    <tr>
-                        <th>Couleur</th>
-                        <td>{{ product.color }}</td>
-                    </tr>
-                    <tr>
-                        <th>Degrès</th>
-                        <td>{{ product.degrees }}</td>
-                    </tr>
+                 <tr>
+                     <th>Nom</th>
+                     <td>{{ product.name }}</td>
+                 </tr>
+                 <tr>
+                     <th>Title</th>
+                     <td>{{ product.title }}</td>
+                 </tr>
+                 <tr>
+                     <th>Style</th>
+                     <td>{{ product.style }}</td>
+                 </tr>
+                 <tr>
+                     <th>Couleur</th>
+                     <td>{{ product.color }}</td>
+                 </tr>
+                 <tr>
+                     <th>Degrès</th>
+                     <td>{{ product.degrees }}</td>
+                 </tr>
                  </thead>
              </table>
          </div>
@@ -77,21 +93,22 @@
      <div class="row">
          <div class="col">
              {{ form_start(form_comment) }}
-                {{ form_widget(form_comment) }}
-            <div class="row">
-                <label for="notesA">Notes : </label>
-                   <div class="items-wrap">
-                        <div class="item-star">
-                            {% for i in 1..10  %}
-                            <input id="star-row{{ i }}-col-{{ i }}" name="star-row{{ i }}" type="radio" value="{{ 6 - i }}" />
-                            <label for="star-row{{ i }}-col-{{ i }}">
-                                <i class="ion-beer"></i>
-                            </label>
-                            {% endfor %}
-                        </div>
-                    </div>
-                <br>
-            </div>
+             {{ form_widget(form_comment) }}
+             <div class="row">
+                 <label for="notesA">Notes : </label>
+                 <div class="items-wrap">
+                     <div class="item-star">
+                         {% for i in 1..10 %}
+                             <input id="star-row{{ i }}-col-{{ i }}" name="star-row{{ i }}" type="radio"
+                                    value="{{ 6 - i }}"/>
+                             <label for="star-row{{ i }}-col-{{ i }}">
+                                 <i class="ion-beer"></i>
+                             </label>
+                         {% endfor %}
+                     </div>
+                 </div>
+                 <br>
+             </div>
              <div class="row">
                  <input type="submit" value="Commenter" class="btn btn-primary">
              </div>

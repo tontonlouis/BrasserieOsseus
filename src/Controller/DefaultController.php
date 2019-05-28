@@ -62,7 +62,7 @@ class DefaultController extends AbstractController
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
-
+        $pdfOptions->set('httpContent', '');
         // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
 
@@ -93,8 +93,11 @@ class DefaultController extends AbstractController
         // Write file to the desired path
         file_put_contents($pdfFilepath, $output);
 
-        // Send some text response
-        return $pdfFilepath;
+        $dompdf->stream($pdfFilepath, [
+            "Attachment" => false
+        ]);
+
+
     }
 
 }

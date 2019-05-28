@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\OrderProduct;
 use App\Entity\Product;
 use App\Form\CommentType;
 use App\Repository\ProductRepository;
@@ -95,6 +96,14 @@ class ProductController extends AbstractController
             'form_comment' => $form->createView()
         ]);
 
+    }
+
+    /**
+     * @Route("/produits/reserver/{id}", name="product.add")
+     */
+    public function add(Product $product)
+    {
+        
     }
 
 
