@@ -34,21 +34,11 @@
              <div class="col-md-4">
                  <h1>{{ product.name }}</h1>
                  <h3><strong>{{ product.price }} €</strong></h3>
-
-                 <form action="{{ path('product.add', {id: product.id}) }}" class="mt-5">
                      <div class="input-group">
-                         <select class="custom-select" id="nbrProduct">
-                             <option selected></option>
-                             <option value="1">1</option>
-                             <option value="2">2</option>
-                             <option value="3">3</option>
-                         </select>
                          <div class="input-group-append">
-                             <button class="btn btn-outline-secondary" type="button">Réserver</button>
+                             <a href="{{ path('product.add', {id: product.id}) }}" data-reserve data-token="{{ csrf_token('reserve' ~ product.id) }}" class="mt-5" method="GET">Réserver</a>
                          </div>
                      </div>
-                 </form>
-
              </div>
          </div>
 

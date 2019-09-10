@@ -88,6 +88,6 @@ class Picture
 
     public function __toString()
     {
-        return $this->filename;
+       return $this->getFilename();
     }
 }

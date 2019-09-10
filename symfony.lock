@@ -343,6 +343,9 @@
             "./src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.3.0"
+    },
     "symfony/http-foundation": {
         "version": "v4.2.4"
     },
@@ -416,6 +419,9 @@
         "version": "v1.11.0"
     },
     "symfony/polyfill-php72": {
+        "version": "v1.11.0"
+    },
+    "symfony/polyfill-php73": {
         "version": "v1.11.0"
     },
     "symfony/process": {
@@ -591,6 +597,9 @@
     },
     "symfony/yaml": {
         "version": "v4.2.4"
+    },
+    "twig/cache-extension": {
+        "version": "1.4-dev"
     },
     "twig/extensions": {
         "version": "1.0",

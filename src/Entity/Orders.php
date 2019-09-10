@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
  */
@@ -31,7 +32,7 @@ class Orders
 
     public function __construct()
     {
-        $this->orderProducts = new ArrayCollection([OrderProduct::class]);
+        $this->orderProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +81,11 @@ class Orders
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+       return (string)$this->getId();
     }
 
 }

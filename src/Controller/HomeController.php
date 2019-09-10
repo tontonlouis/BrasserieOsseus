@@ -26,6 +26,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+
         return $this->render('home/index.html.twig', [
             'current_menu' => 'home',
         ]);
@@ -37,6 +38,7 @@ class HomeController extends AbstractController
      */
     public function contact(Request $request, ContactNotification $mailer)
     {
+
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);

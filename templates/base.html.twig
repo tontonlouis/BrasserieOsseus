@@ -50,7 +50,7 @@
                     <a href="#" class="notification">
                         <i style="font-size: 2.5em; color: white;" class="fas fa-shopping-cart"></i>
                         {% if app.user %}
-                            <span class="badge"></span>
+                            <span class="badge" id="orderProd">{% if app.session.get('panier') %} 5 {% endif %}</span>
                         {% endif %}
                     </a>
                 </li>

@@ -12,28 +12,31 @@ require('../scss/style.scss');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
 
+/********************************************
+ *          Carousel image show             *
+ *******************************************/
 $('.carousel').carousel({
     interval: 5000
 });
 
- /***********************************************
+/***********************************************
  *          Suppression des éléments            *
  ***********************************************/
 document.querySelectorAll('[data-delete]').forEach(a => {
     a.addEventListener('click', e => {
-        e.preventDefault()
+        e.preventDefault();
         fetch(a.getAttribute('href'), {
             method: 'DELETE',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({'_token': a.dataset.token})
         }).then(response => response.json())
             .then(data => {
-                if(data.success){
+                if (data.success) {
                     a.parentNode.parentNode.removeChild(a.parentNode)
-                }else{
+                } else {
                     alert(data.error)
                 }
             })
@@ -43,10 +46,52 @@ document.querySelectorAll('[data-delete]').forEach(a => {
 
 /********************************************************
  *              Ajout dans le paniers                   *
- ********************************************************/
+ *******************************************************/
+
+document.querySelectorAll('[data-reserve]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        fetch(a.getAttribute('href'), {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({'_token': a.dataset.token})
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success){
+                    console.log(data.success);
+                    $('#orderProd').text(data.success);
+                } else {
+                    alert(data.error)
+                }
+            })
+
+    })
+});
 
 
-
+//             a.getAttribute('href'), {
+//             method: 'GET',
+//             headers: {
+//                 'X-Requested-With': 'XMLHttpRequest',
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({'_reserve': a.dataset.token})
+//         }).then(response => response.json())
+//             .then(data => {
+//                 if (data.success) {
+//                     $('#orderProd').textContent = 1;
+//                     alert(data.success)
+//                 } else {
+//                     alert(data.error)
+//                 }
+//             })
+//             .catch(e => alert(e))
+//     })
+// });
 
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -43,6 +44,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -57,7 +59,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     public function setUsername(string $username): self
@@ -91,7 +93,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -154,6 +156,6 @@ class User implements UserInterface
      */
     public function __toString()
     {
-       return $this->username;
+        return $this->getUsername();
     }
 }

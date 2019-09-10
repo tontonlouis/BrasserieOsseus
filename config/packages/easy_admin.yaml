@@ -1,18 +1,43 @@
 easy_admin:
-    design:
-      menu:
-        - label: 'Gestion des Produits'
-          icon: 'beer'
-          children:
-            - { entity: 'Product' , label: 'Produit'}
-            - { entity: 'Picture' , label: 'Photo'}
-    entities:
-        Product:
-          class: App\Entity\Product
+  site_name: 'Brasserie Osseus'
+  design:
+    form_theme:
+      - '@EasyAdmin/form/bootstrap_4.html.twig'
 
-        Picture:
-          class: App\Entity\Picture
-          form:
-            fields:
-              - { property: 'product'}
-              - { property: 'imageFile', type: 'file', base_path: '%vich_uploader.mappings%'}
+    menu:
+      - label: 'Gestion des Produits'
+        icon: 'beer'
+        children:
+          - { entity: 'Product' , label: 'Produit'}
+          - { entity: 'Picture' , label: 'Photo'}
+      - label: 'Gestion des utilisateurs'
+        icon: 'user'
+        children:
+          - { entity: 'User', label: 'Utilisateur' }
+  entities:
+    Product:
+      class: App\Entity\Product
+
+    Picture:
+      class: App\Entity\Picture
+      list:
+        fields:
+          - { property: 'id' }
+          - { property: 'filename', type: 'image', base_path: '%vich_map%'}
+      show:
+        fields:
+          - { property: 'filename', type: 'image', base_path: '%vich_map%'}
+      form:
+        fields:
+          - { property: 'imageFile', type: 'vich_image' }
+    User:
+      class: App\Entity\User
+      controller: App\Controller\UserController
+      list:
+        fields: ['id', 'username', 'roles']
+      form:
+        fields:
+          - { property: 'username'}
+          - { property: 'password', type: 'password'}
+          - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Utilisateur': 'ROLE_USER', 'Admin': 'ROLE_ADMIN'} } }
+

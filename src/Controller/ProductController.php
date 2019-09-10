@@ -9,11 +9,14 @@ use App\Form\CommentType;
 use App\Repository\ProductRepository;
 use App\Repository\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use function mysql_xdevapi\getSession;
 
 class ProductController extends AbstractController
 {
@@ -99,11 +102,28 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/produits/reserver/{id}", name="product.add")
+     * @Route("/produits/reserver/{id}", name="product.add", methods={"POST"})
+     * @param Product $product
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function add(Product $product)
+    public function add(Product $product, Request $request)
     {
-        
+        $data = json_decode($request->getContent(), true);
+
+        $session  = new Session();
+
+        if(empty($session->getName('panier'))){
+            $session->set('panier', []);
+        }
+
+        $panier = $session->get('panier');
+        $panier[] = $product;
+        $session->set('panier', $panier);
+
+        return new JsonResponse(['success' => 1 ]);
+
+
     }
 
 
