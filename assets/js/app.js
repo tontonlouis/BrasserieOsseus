@@ -57,41 +57,17 @@ document.querySelectorAll('[data-reserve]').forEach(a => {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({'_token': a.dataset.token})
+            body: JSON.stringify({'_token': a.dataset.token, '_product': 'salut'})
         })
             .then(response => response.json())
             .then(data => {
                 if(data.success){
-                    console.log(data.success);
                     $('#orderProd').text(data.success);
                 } else {
                     alert(data.error)
                 }
             })
-
     })
 });
-
-
-//             a.getAttribute('href'), {
-//             method: 'GET',
-//             headers: {
-//                 'X-Requested-With': 'XMLHttpRequest',
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({'_reserve': a.dataset.token})
-//         }).then(response => response.json())
-//             .then(data => {
-//                 if (data.success) {
-//                     $('#orderProd').textContent = 1;
-//                     alert(data.success)
-//                 } else {
-//                     alert(data.error)
-//                 }
-//             })
-//             .catch(e => alert(e))
-//     })
-// });
-
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

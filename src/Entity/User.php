@@ -44,7 +44,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->orders = new ArrayCollection();
-
     }
 
     public function getId(): ?int

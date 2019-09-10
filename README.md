@@ -1,6 +1,6 @@
 # Brasserie Osseus
 
-####Présentation 
+#### Présentation 
 
 La Brasserie Osseus (Ossuaire en latin) est née dans l’esprit d’amis voulant allier leurs passions pour ces excellents 
 breuvages houblonnés et la musique métal. Nous avons fait le choix de mettre une partie de notre identité et de la faire 
@@ -15,9 +15,10 @@ industriels que par des étiquettes originales.
 ##### Installation
 
 - git clone
-- composer update
-- nom install
+- composer install
+- npm install
 - php bin/console doctrine:database:create
+- php bin/console doctrine:migrations:migrate
 - php bin/console doctrine:fixtures:load
 
 

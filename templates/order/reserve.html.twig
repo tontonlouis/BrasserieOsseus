@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Réservation' %}
+
+{% block body %}
+
+    <h1>Merci pour votre réservation {{ orders.user.username }}</h1>
+    <p>Vous allez être redirigé automatiquement, merci de patienter </p>
+
+    <ul>
+        {% for caddy in orders.orderProducts %}
+            <li>{{ caddy.product.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="application/javascript">
+
+        setTimeout(function () {
+            window.location.href = "{{path('home')|escape('js')}}"
+        }, 5000)
+
+        console.log('je suis ici')
+    </script>
+
+{% endblock %}

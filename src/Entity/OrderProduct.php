@@ -22,13 +22,13 @@ class OrderProduct
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orderProducts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orderProducts",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Orders", inversedBy="orderProducts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Orders", inversedBy="orderProducts",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $orders;

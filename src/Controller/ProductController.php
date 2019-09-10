@@ -102,26 +102,26 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/produits/reserver/{id}", name="product.add", methods={"POST"})
+     * @Route("/produits/reserver/{id}", name="product.add", methods={"POST|GET"})
      * @param Product $product
      * @param Request $request
      * @return JsonResponse
      */
     public function add(Product $product, Request $request)
     {
-        $data = json_decode($request->getContent(), true);
+        // $data = json_decode($request->getContent(), true);
 
-        $session  = new Session();
+        $session  = $request->getSession();
 
-        if(empty($session->getName('panier'))){
-            $session->set('panier', []);
+        if(empty($session->getName('caddy'))){
+            $session->set('caddy', []);
         }
 
-        $panier = $session->get('panier');
-        $panier[] = $product;
-        $session->set('panier', $panier);
+        $caddy = $session->get('caddy');
+        $caddy[] = $product;
+        $session->set('caddy', $caddy);
 
-        return new JsonResponse(['success' => 1 ]);
+        return new JsonResponse(['success' => count($caddy) ]);
 
 
     }

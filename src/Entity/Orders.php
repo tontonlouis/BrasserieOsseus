@@ -26,7 +26,7 @@ class Orders
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderProduct", mappedBy="orders")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderProduct", mappedBy="orders", cascade={"persist"})
      */
     private $orderProducts;
 
