@@ -1,52 +1,33 @@
-# BrasserieOsseuse
-Brasserie Osseuse 
+# Brasserie Osseus
+
+####Présentation 
+
+La Brasserie Osseus (Ossuaire en latin) est née dans l’esprit d’amis voulant allier leurs passions pour ces excellents 
+breuvages houblonnés et la musique métal. Nous avons fait le choix de mettre une partie de notre identité et de la faire 
+transparaître dans nos bières et dans notre brasserie que ce soit par l’origine du nom, les visuels, ou encore les 
+recettes pour le plaisir de vos squelettes. Nous nous reconnaissons dans des modèles de « Craft beer » américaines, 
+scandinaves ou encore irlandaises et plutôt que de continuer de brasser en amateur au fond du garage, nous avons fait 
+le choix de vous faire partager nos produits avec le désir de vous surprendre tant par des saveurs loin des standards 
+industriels que par des étiquettes originales.
 
 
- ------------ -----------------------------------------------------------------
- Type           Description                                                     
- ------------ -----------------------------------------------------------------
-      ManyToOne    Each Order relates to (has) one User.                            
-                   Each User can relate to (can have) many Order objects
-    
-      OneToMany    Each Order can relate to (can have) many User objects.           
-                   Each User relates to (has) one Order
-    
-      ManyToMany   Each Order can relate to (can have) many User objects.           
-                   Each User can also relate to (can also have) many Order objects
-    
-      OneToOne     Each Order relates to (has) exactly one User.                    
-                   Each User also relates to (has) exactly one Order.
- ------------ -----------------------------------------------------------------
- 
- Français
- ------------ -----------------------------------------------------------------
- Type           Description                                                     
- ------------ -----------------------------------------------------------------
-       ManyToOne       Chaque commande concerne un utilisateur.
-                        Chaque utilisateur peut avoir une relation avec plusieurs objets Order.
-                        
-       OneToMany       Chaque commande peut concerner de nombreux objets utilisateur.
-                        Chaque utilisateur se rapporte à une commande.       
-        
-       ManyToMany      Chaque commande peut concerner de nombreux objets utilisateur.
-                        Chaque utilisateur peut également se rapporter à de nombreux objets Order.
-        
-       OneToOne        Chaque commande concerne exactement un utilisateur.
-                        Chaque utilisateur se rapporte également à exactement une commande.
------------- -----------------------------------------------------------------
+## Configuration
+##### Installation
 
-                                                                                                                                              
-  An exception occurred while executing 'INSERT INTO order_product (quantity, order_id, product_id) VALUES (?, ?, ?)' with params [6, 2, 6]:  
-                                                                                                                                              
-  SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicata du champ '6' pour la clef 'UNIQ_2530ADE64584665A'                           
-                                                                                                                                              
+- git clone
+- composer update
+- nom install
+- php bin/console doctrine:database:create
+- php bin/console doctrine:fixtures:load
 
-In PDOStatement.php line 119:
-                                                                                                                     
-  SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicata du champ '6' pour la clef 'UNIQ_2530ADE64584665A'  
-                                                                                                                     
 
-In PDOStatement.php line 117:
-                                                                                                                     
-  SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicata du champ '6' pour la clef 'UNIQ_2530ADE64584665A'  
-        
+##### Lancer le site 
+
+- php bin/console server:run
+- npm run dev-server
+
+##### Lancer le serveur stmp
+
+- maildev
+
+           
