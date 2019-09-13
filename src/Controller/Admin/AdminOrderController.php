@@ -33,9 +33,12 @@ class AdminOrderController extends AbstractController
      */
     private $orderRepository;
 
+    /**
+     * @var DefaultController
+     */
     private $pdf;
 
-    public function __construct(DefaultController $pdf,ObjectManager $em, OrderProductRepository $orderProductRepository, OrderRepository $orderRepository)
+    public function __construct(DefaultController $pdf, ObjectManager $em, OrderProductRepository $orderProductRepository, OrderRepository $orderRepository)
     {
         $this->em = $em;
         $this->orderProductRepository = $orderProductRepository;
@@ -75,7 +78,7 @@ class AdminOrderController extends AbstractController
     {
         $orderProd = $order->getOrderProducts();
 
-       return $this->pdf->bill($order, $orderProd);
+        return $this->pdf->bill($order, $orderProd);
 
     }
 

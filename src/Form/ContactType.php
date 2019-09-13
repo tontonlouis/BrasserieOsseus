@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Contact;
 
+use Grafikart\RecaptchaBundle\Type\RecaptchaSubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -35,7 +36,10 @@ class ContactType extends AbstractType
                     'rows' => 8
                 ]
             ])
-        ;
+            ->add('captcha', RecaptchaSubmitType::class, [
+                'label' => 'Envoyer'
+
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)

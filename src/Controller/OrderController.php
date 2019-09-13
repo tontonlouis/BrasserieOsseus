@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\OrderProduct;
 use App\Entity\Orders;
-use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +36,7 @@ class OrderController extends AbstractController
     public function caddy(Request $request)
     {
         $caddy = $request->getSession()->get('caddy');
-        dump($caddy);
+
         return $this->render('order/index.html.twig', [
             'controller_name' => 'OrderController',
             'caddy' => $caddy
@@ -80,6 +79,7 @@ class OrderController extends AbstractController
     {
         $user = $this->getUser();
         $orders = $user->getOrders();
+        dump($request->getContent());
 
         return $this->render('order/show.html.twig', [
             'orders' => $orders

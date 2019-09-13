@@ -37,7 +37,7 @@ document.querySelectorAll('[data-delete]').forEach(a => {
                 if (data.success) {
                     a.parentNode.parentNode.removeChild(a.parentNode)
                 } else {
-                    alert(data.error)
+                    alert(data.error);
                 }
             })
             .catch(e => alert(e))
@@ -57,12 +57,13 @@ document.querySelectorAll('[data-reserve]').forEach(a => {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({'_token': a.dataset.token, '_product': 'salut'})
+            body: JSON.stringify({'_token': a.dataset.token})
         })
             .then(response => response.json())
             .then(data => {
-                if(data.success){
+                if (data.success) {
                     $('#orderProd').text(data.success);
+                    $('[data-reserve]').hide();
                 } else {
                     alert(data.error)
                 }

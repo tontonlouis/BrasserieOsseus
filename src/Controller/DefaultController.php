@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\OrderProduct;
 use App\Entity\Orders;
+use Doctrine\Common\Persistence\ObjectManager;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,6 +12,16 @@ use Faker\Factory;
 
 class DefaultController extends AbstractController
 {
+
+    /**
+     * @var ObjectManager
+     */
+    private $em;
+
+    public function __construct(ObjectManager $em)
+    {
+        $this->em = $em;
+    }
 
     public function index()
     {
@@ -97,7 +108,12 @@ class DefaultController extends AbstractController
             "Attachment" => false
         ]);
 
+        $orders->setInvoice($pdfFilepath);
+        $orders->setPay(true);
+        $orders->setPaydate(new \DateTime());
 
+        $this->em->persist($orders);
+        $this->em->flush();
     }
 
 }

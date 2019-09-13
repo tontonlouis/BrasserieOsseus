@@ -30,9 +30,30 @@ class Orders
      */
     private $orderProducts;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $pay = false;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $paydate;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $invoice;
+
     public function __construct()
     {
         $this->orderProducts = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -86,6 +107,54 @@ class Orders
     public function __toString()
     {
        return (string)$this->getId();
+    }
+
+    public function getPay(): ?bool
+    {
+        return $this->pay;
+    }
+
+    public function setPay(bool $pay): self
+    {
+        $this->pay = $pay;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getPaydate(): ?\DateTimeInterface
+    {
+        return $this->paydate;
+    }
+
+    public function setPaydate(\DateTimeInterface $paydate): self
+    {
+        $this->paydate = $paydate;
+
+        return $this;
+    }
+
+    public function getInvoice(): ?string
+    {
+        return $this->invoice;
+    }
+
+    public function setInvoice(?string $invoice): self
+    {
+        $this->invoice = $invoice;
+
+        return $this;
     }
 
 }

@@ -7,40 +7,44 @@
         "ext-iconv": "*",
         "cocur/slugify": "^3.2",
         "dompdf/dompdf": "^0.8.3",
-        "easycorp/easyadmin-bundle": "^2.1",
+        "easycorp/easyadmin-bundle": "^2.3",
         "fzaninotto/faker": "^1.8",
+        "google/recaptcha": "^1.2",
         "knplabs/knp-paginator-bundle": "^3.0",
         "liip/imagine-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.1",
-        "symfony/asset": "4.2.*",
-        "symfony/console": "4.2.*",
-        "symfony/dotenv": "4.2.*",
-        "symfony/expression-language": "4.2.*",
-        "symfony/flex": "^1.1",
-        "symfony/form": "4.2.*",
-        "symfony/framework-bundle": "4.2.*",
+        "symfony/apache-pack": "^1.0",
+        "symfony/asset": "4.3.*",
+        "symfony/console": "4.3.*",
+        "symfony/dotenv": "4.3.*",
+        "symfony/expression-language": "4.3.*",
+        "symfony/http-client": "4.3.*",
+        "symfony/intl": "4.3.*",
+        "symfony/flex": "^1.3.1",
+        "symfony/form": "4.3.*",
+        "symfony/framework-bundle": "4.3.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
-        "symfony/process": "4.2.*",
-        "symfony/security-bundle": "4.2.*",
+        "symfony/process": "4.3.*",
+        "symfony/security-bundle": "4.3.*",
         "symfony/serializer-pack": "*",
         "symfony/swiftmailer-bundle": "^3.2",
-        "symfony/translation": "4.2.*",
-        "symfony/twig-bundle": "4.2.*",
-        "symfony/validator": "4.2.*",
-        "symfony/web-link": "4.2.*",
-        "symfony/webpack-encore-bundle": "^1.4",
-        "symfony/yaml": "4.2.*",
+        "symfony/translation": "4.3.*",
+        "symfony/twig-bundle": "4.3.*",
+        "symfony/validator": "4.3.*",
+        "symfony/web-link": "4.3.*",
+        "symfony/webpack-encore-bundle": "^1.6",
+        "symfony/yaml": "4.3.*",
         "twig/cache-extension": "^1.4@dev",
         "vich/uploader-bundle": "^1.9"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.2",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "4.2.*"
+        "symfony/web-server-bundle": "4.3.*"
     },
     "config": {
         "preferred-install": {
@@ -50,7 +54,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Grafikart\\RecaptchaBundle\\": "lib/RecaptchaBundle"
         }
     },
     "autoload-dev": {
@@ -83,8 +88,8 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": true,
-            "require": "4.2.*"
+            "allow-contrib": false,
+            "require": "4.3.*"
         }
     }
 }

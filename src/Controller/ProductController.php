@@ -48,9 +48,9 @@ class ProductController extends AbstractController
     public function index(PaginatorInterface $paginator, Request $request)
     {
 
-        $paginator = $paginator->paginate($this->repoProduct->findAllQuery(),  $request->query->getInt('page', 1),6);
+        $paginator = $paginator->paginate($this->repoProduct->findAllQuery(), $request->query->getInt('page', 1), 6);
 
-        return $this->render('product/index.html.twig',[
+        return $this->render('product/index.html.twig', [
             'current_menu' => 'presentation',
             'products' => $paginator
         ]);
@@ -63,39 +63,48 @@ class ProductController extends AbstractController
     public function show(Product $product, string $slug, Request $request, PaginatorInterface $paginator)
     {
 
-        if ($slug !== $product->getSlug())
-        {
+        if ($slug !== $product->getSlug()) {
             return $this->redirectToRoute('product.show', [
                 'id' => $product->getId(),
                 'slug' => $product->getSlug()
-            ],301);
+            ], 301);
         }
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
         $product = $this->repoProduct->find($product->getId());
-        $paginator = $paginator->paginate($this->repoComment->findAllQuery($product), $request->query->getInt('page', 1 ), 5);
+        $paginator = $paginator->paginate($this->repoComment->findAllQuery($product), $request->query->getInt('page', 1), 5);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment->setProduct($product);
             $this->em->persist($comment);
             $this->em->flush();
             $this->addFlash('success', 'Votre commentaire a bien été pris en compte');
             //$paginator = $paginator->paginate($this->repoComment->findAllQuery($product), $request->query->getInt('page', 1 ), 5);
 
-            $this->redirectToRoute('product.show' , [
+            $this->redirectToRoute('product.show', [
                 'id' => $product->getId(),
                 'slug' => $product->getSlug(),
                 'comments' => $paginator
             ]);
         }
 
+        $disable = false;
+        if (!empty($request->getSession()->get('caddy'))) {
+            $caddy = $request->getSession()->get('caddy');
+            foreach ($caddy as $key => $value) {
+                if($product->getId() === $value->getId()){
+                    $disable = true;
+                }
+            }
+        }
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'comments' => $paginator,
+            'disable' => $disable,
             'form_comment' => $form->createView()
         ]);
 
@@ -111,9 +120,9 @@ class ProductController extends AbstractController
     {
         // $data = json_decode($request->getContent(), true);
 
-        $session  = $request->getSession();
+        $session = $request->getSession();
 
-        if(empty($session->getName('caddy'))){
+        if (empty($session->getName('caddy'))) {
             $session->set('caddy', []);
         }
 
@@ -121,7 +130,7 @@ class ProductController extends AbstractController
         $caddy[] = $product;
         $session->set('caddy', $caddy);
 
-        return new JsonResponse(['success' => count($caddy) ]);
+        return new JsonResponse(['success' => count($session->get('caddy'))]);
 
 
     }

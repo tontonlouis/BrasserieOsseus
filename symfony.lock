@@ -139,14 +139,23 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
-    "facebook/webdriver": {
-        "version": "1.6.0"
-    },
     "fig/link-util": {
         "version": "1.0.0"
     },
     "fzaninotto/faker": {
         "version": "v1.8.0"
+    },
+    "google/recaptcha": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.1",
+            "ref": "d087df3e087f50da3955f2def05079380da5894b"
+        },
+        "files": [
+            "./config/packages/google_recaptcha.yaml"
+        ]
     },
     "imagine/imagine": {
         "version": "v0.7.1"
@@ -218,9 +227,6 @@
     "psr/log": {
         "version": "1.1.0"
     },
-    "psr/simple-cache": {
-        "version": "1.0.1"
-    },
     "sabberworm/php-css-parser": {
         "version": "8.1.0"
     },
@@ -238,6 +244,18 @@
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.0"
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "c82bead70f9a4f656354a193df7bf0ca2114efa0"
+        },
+        "files": [
+            "./public/.htaccess"
+        ]
     },
     "symfony/asset": {
         "version": "v4.2.4"
@@ -347,7 +365,7 @@
         ]
     },
     "symfony/http-client": {
-        "version": "v4.3.0"
+        "version": "v4.3.4"
     },
     "symfony/http-foundation": {
         "version": "v4.2.4"
@@ -369,6 +387,9 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/mime": {
+        "version": "v4.3.4"
     },
     "symfony/monolog-bridge": {
         "version": "v4.2.4"
@@ -392,9 +413,6 @@
     },
     "symfony/orm-pack": {
         "version": "v1.0.6"
-    },
-    "symfony/panther": {
-        "version": "v0.3.0"
     },
     "symfony/phpunit-bridge": {
         "version": "4.1",
@@ -425,7 +443,7 @@
         "version": "v1.11.0"
     },
     "symfony/polyfill-php73": {
-        "version": "v1.11.0"
+        "version": "v1.12.0"
     },
     "symfony/process": {
         "version": "v4.2.4"

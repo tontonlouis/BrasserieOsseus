@@ -9,40 +9,45 @@
 
         <hr>
 
-        <table class="table table-striped">
-            <thead>
+        {% if caddy is empty %}
+            <h2> Fais demi-tour et va réserver tes bières </h2>
+        {% else %}
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <td>Biere</td>
                     <td>Quantité</td>
                     <td>Prix</td>
                 </tr>
-            </thead>
-            <tbody>
-            {% for product in caddy %}
-                <tr>
-                    <td>{{ product.name }}</td>
-                    <td>
-                        <select name="quantity" id="">
-                            <option value="1" selected>1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </td>
-                    <td>{{ product.price }}</td>
-                </tr>
-            {% endfor %}
+                </thead>
+                <tbody>
+                {% for product in caddy %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>
+                            <select name="quantity" id="">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                {% endfor %}
 
-            </tbody>
-            <tfooter>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><a href="{{ path('order.reserve') }}" class="btn btn-danger">Réserver</a></td>
-                </tr>
-            </tfooter>
-        </table>
+                </tbody>
+                <tfooter>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><a href="{{ path('order.reserve') }}" class="btn btn-danger">Réserver</a></td>
+                    </tr>
+                </tfooter>
+            </table>
+
+        {% endif %}
 
 
     </div>

@@ -44,8 +44,8 @@ class HomeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-           $pdf = $this->pdf->index();
-           $mailer->notify($contact, $pdf);
+           //$pdf = $this->pdf->index();
+           $mailer->notify($contact);  //$mailer->notify($contact, $pdf);
            $this->addFlash('success', "Email envoyé avec succès");
            $this->redirectToRoute('contact', [
                'current_menu' => 'contact'
