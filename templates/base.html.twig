@@ -59,7 +59,7 @@
                             <i class="fas fa-skull"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item">Profil</a>
+                            <a href="{{ path('profil') }}" class="dropdown-item">Profil</a>
                             <a href="{{ path('order.reserve.show', {id: app.user.id}) }}" class="dropdown-item">Réservation</a>
                             <div class="dropdown-divider"></div>
                             <a href="{{ path('logout') }}" class="dropdown-item">Se déconnecter</a>
@@ -97,17 +97,60 @@
     {% block body %}{% endblock %}
 </div>
 
-<div class="card text-center mt-4">
+<div class="card text-white text-center bg-dark mt-3">
     <div class="card-header">
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fas fa-map-marker-alt"></i>
+        <h5 class="card-title">Brasserie Osseus</h5>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+
+        <p class="card-text">Micro-brasserie</p>
+        <div class="row">
+            <div class="col-4">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-dark">Production de bière</li>
+                    <li class="list-group-item list-group-item-dark">Vente sur place</li>
+                    <li class="list-group-item list-group-item-dark">Salon de dégustation</li>
+                    <li class="list-group-item list-group-item-dark">Cours de brassage</li>
+                    <li class="list-group-item list-group-item-dark">Bière à façon</li>
+                </ul>
+
+            </div>
+            <div class="col-4">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-dark">
+                        <i class="fas fa-phone-square"> 06-29-13-72-29</i>
+                    </li>
+                    <li class="list-group-item list-group-item-dark">
+                        <i class="fas fa-map-marker-alt"> 19 place roger salengro</i>
+                    </li>
+                    <li class="list-group-item list-group-item-dark">
+                        <i class="fas fa-city"> 59140 Dunkerque</i>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-4 list-group">
+                <ul>
+                    <a href="https://www.facebook.com/brasserieosseus/" target="_blank"
+                       class="list-group-item list-group-item-action list-group-item-dark">
+                        <i class="fab fa-facebook"> @brasserieosseus </i>
+                    </a>
+                    <a href="https://www.facebook.com/brasserieosseus/" target="_blank"
+                       class="list-group-item list-group-item-action list-group-item-dark">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com/brasserieosseus/" target="_blank"
+                       class="list-group-item list-group-item-action list-group-item-dark">
+                        <i class="fab fa-instagram"> @brasserieosseus </i>
+                    </a>
+                    <a href="https://www.facebook.com/brasserieosseus/" target="_blank"
+                       class="list-group-item list-group-item-action list-group-item-dark">
+                        <i class="fas fa-envelope-square"> brasserieosseus@gmail.com</i>
+                    </a>
+                </ul>
+
+            </div>
+        </div>
     </div>
 
 </div>

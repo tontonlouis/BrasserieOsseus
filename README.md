@@ -32,4 +32,13 @@ industriels que par des étiquettes originales.
 - maildev
 
  
-####          
+#### Fixtures :
+Banniere sold Out;
+Add property Product -> IBU (int)
+Message : Produit récup mag
+Adresse de facturation ??
+degree float ?
+Quantity à la réservation du produit
+no twitter
+
+
