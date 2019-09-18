@@ -10,6 +10,7 @@ scandinaves ou encore irlandaises et plutôt que de continuer de brasser en amat
 le choix de vous faire partager nos produits avec le désir de vous surprendre tant par des saveurs loin des standards 
 industriels que par des étiquettes originales.
 
+***
 
 ## Configuration
 ##### Installation
@@ -31,14 +32,16 @@ industriels que par des étiquettes originales.
 
 - maildev
 
+***
  
 #### Fixtures :
-Banniere sold Out;
-Add property Product -> IBU (int)
-Message : Produit récup mag
-Adresse de facturation ??
-degree float ?
-Quantity à la réservation du produit
-no twitter
+- Banniere sold Out (Problème n+1 cache twig) 
+- Adresse de facturation ??
 
-
+#### Check :
+- Ajout du nouveau logo et police (Attention taille image avec Liip)
+- Add property Product -> IBU (int) & soldOut (Boolean)
+- no twitter
+- Quantity à la réservation du produit
+- Message : Produit récup mag
+- degree float ?

@@ -36,9 +36,26 @@
                  <h1>{{ product.name }}</h1>
                  <h3><strong>{{ product.price }} €</strong></h3>
                  <div class="input-group align-items-end">
-                     <a href="{{ path('product.add', {id: product.id}) }}" data-reserve
-                        data-token="{{ csrf_token('reserve' ~ product.id) }}" class="btn btn-danger mt-5 {% if disable %} disabled {% endif %}" method="GET">Réserver</a>
 
+                    {#      button group         #}
+                     <div class="input-group {%  if disable %} disabled {% endif %}">
+                         <select class="custom-select" id="qteReserve">
+                             <option value="1" selected>1</option>
+                             <option value="2">2</option>
+                             <option value="3">3</option>
+                             <option value="4">4</option>
+                             <option value="5">5</option>
+                         </select>
+                         <div class="input-group-append">
+                             <a href="{{ path('product.add', {id: product.id}) }}" data-reserve id="button-addon2"
+                                data-token="{{ csrf_token('reserve' ~ product.id) }}" class="btn btn-outline-secondary {% if disable %} disabled {% endif %}" method="GET">Réserver</a>
+                         </div>
+                     </div>
+                     {#                     #}
+
+                     {% if is_granted("ROLE_ADMIN") %}
+                         <a class="btn btn-secondary" href="{{ path('admin.product.edit', {'id': product.id}) }}">Éditer</a>
+                     {% endif %}
                  </div>
              </div>
          </div>

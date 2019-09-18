@@ -4,6 +4,10 @@
 
  {% block body %}
      <h1>Nos produits</h1>
+
+     <div class="alert alert-danger">
+         Attention, tous nos produits sont à retirer en magasin
+     </div>
      <div class="row">
          {% for product in products %}
             {{ include('product/_product.html.twig') }}

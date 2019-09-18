@@ -107,6 +107,16 @@ class Product
      */
     private $orderProducts;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $soldOut;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $IBU;
+
 
     public function __construct()
     {
@@ -457,5 +467,29 @@ class Product
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getSoldOut(): ?bool
+    {
+        return $this->soldOut;
+    }
+
+    public function setSoldOut(bool $soldOut): self
+    {
+        $this->soldOut = $soldOut;
+
+        return $this;
+    }
+
+    public function getIBU(): ?int
+    {
+        return $this->IBU;
+    }
+
+    public function setIBU(int $IBU): self
+    {
+        $this->IBU = $IBU;
+
+        return $this;
     }
 }

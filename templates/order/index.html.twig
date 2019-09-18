@@ -9,6 +9,10 @@
 
         <hr>
 
+        <div class="alert alert-danger">
+            Attention, tous nos produits sont à retirer en magasin
+        </div>
+
         {% if caddy is empty %}
             <h2> Fais demi-tour et va réserver tes bières </h2>
         {% else %}
@@ -18,28 +22,47 @@
                     <td>Biere</td>
                     <td>Quantité</td>
                     <td>Prix</td>
+                    <td>Prix total</td>
                 </tr>
                 </thead>
                 <tbody>
+                {% set total = 0 %}
                 {% for product in caddy %}
                     <tr>
-                        <td>{{ product.name }}</td>
+                        <td>{{ product.product.name }}</td>
                         <td>
                             <select name="quantity" id="">
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
+                                {% for i in 0..10  %}
+                                    {% if i == product.quantity %}
+                                            <option value="{{ i }}" selected>{{ i }}</option>
+                                        {% else %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
                             </select>
                         </td>
-                        <td>{{ product.price }}</td>
+                        <td>{{ product.product.price }}</td>
+                        <td>{{ product.quantity * product.product.price }}</td>
                     </tr>
+                    {%  set total = total + product.quantity * product.product.price %}
                 {% endfor %}
 
                 </tbody>
                 <tfooter>
                     <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ total |number_format(2,',', '.') }} €</td>
+                    </tr>
+                    <tr>
+                        <td>Total TTC</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ (total * tva) | number_format(2,',', '.') }} €</td>
+                    </tr>
+                    <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td><a href="{{ path('order.reserve') }}" class="btn btn-danger">Réserver</a></td>

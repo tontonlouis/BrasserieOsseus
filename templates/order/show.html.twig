@@ -2,25 +2,34 @@
 
 {% block title 'Réservation' %}
 
-{% block body  %}
+{% block body %}
 
     <h1>Visualisation des réservations</h1>
 
-    <table class="table table-striped">
-        <thead>
+    <hr>
+
+    {% if orders is empty %}
+
+        <h1>Pas encore de réservation ! Qu'est-ce que tu attend ?</h1>
+    {% else %}
+        {% for order in orders %}
+            <table class="table table-striped">
+            <thead>
             <tr>
                 <td>N° de commande</td>
                 <td>Action</td>
             </tr>
-        </thead>
-        {% for order in orders %}
+            </thead>
             <tbod>
                 <tr>
-                    <td>Commande n°{{ order.id }}</td>
+                    <td><a href="{{ asset('factures' ~ order.invoice ) }}" target="_blank">Commande n°{{ order.id }}</a>
+                    </td>
                     <td>En attente</td>
                 </tr>
             </tbod>
         {% endfor %}
+    {% endif %}
+
 
     </table>
 {% endblock %}

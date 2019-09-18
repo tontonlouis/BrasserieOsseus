@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,13 +35,18 @@ class ProductType extends AbstractType
             ->add('description', TextareaType::class, [
                 'attr' => ['rows' => 8]
             ])
-            ->add('price', IntegerType::class)
+            ->add('price', NumberType::class)
             ->add('quantity', IntegerType::class)
             ->add('style', TextType::class)
             ->add('color', ChoiceType::class,[
                 'choices' => $this->getChoicesColor()
             ])
-            ->add('degrees', IntegerType::class)
+            ->add('degrees', NumberType::class, [
+                'attr' => [
+                    'min' => 0,
+                    'max' => 20
+                ]
+            ])
             ->add('picturesFiles', FileType::class,[
                 'required' => false,
                 'multiple' => true
@@ -48,6 +55,9 @@ class ProductType extends AbstractType
                 'required' => false
             ])
             ->add('promo', IntegerType::class, [
+                'required' => false
+            ])
+            ->add('soldOut', CheckboxType::class, [
                 'required' => false
             ]);
     }

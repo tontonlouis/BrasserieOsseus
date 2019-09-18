@@ -57,13 +57,14 @@ document.querySelectorAll('[data-reserve]').forEach(a => {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({'_token': a.dataset.token})
+            body: JSON.stringify({'qteReserve': $('#qteReserve').val(), '_token': a.dataset.token})
         })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     $('#orderProd').text(data.success);
                     $('[data-reserve]').hide();
+                    $('#qteReserve').hide();
                 } else {
                     alert(data.error)
                 }

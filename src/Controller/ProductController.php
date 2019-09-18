@@ -95,7 +95,7 @@ class ProductController extends AbstractController
         if (!empty($request->getSession()->get('caddy'))) {
             $caddy = $request->getSession()->get('caddy');
             foreach ($caddy as $key => $value) {
-                if($product->getId() === $value->getId()){
+                if($product->getId() === $value->getProduct()->getId()){
                     $disable = true;
                 }
             }
@@ -118,7 +118,11 @@ class ProductController extends AbstractController
      */
     public function add(Product $product, Request $request)
     {
-        // $data = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true);
+
+        $orderProd = new OrderProduct();
+        $orderProd->setProduct($product);
+        $orderProd->setQuantity($data['qteReserve']);
 
         $session = $request->getSession();
 
@@ -127,7 +131,7 @@ class ProductController extends AbstractController
         }
 
         $caddy = $session->get('caddy');
-        $caddy[] = $product;
+        $caddy[] = $orderProd;
         $session->set('caddy', $caddy);
 
         return new JsonResponse(['success' => count($session->get('caddy'))]);

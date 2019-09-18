@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
         $this->em = $em;
     }
 
-    public function index()
+    public function reserve(Orders $orders)
     {
 
         // Configure Dompdf according to your needs
@@ -35,7 +35,8 @@ class DefaultController extends AbstractController
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('pdf/defaultPDF.html.twig', [
-            'title' => "Commande n° 50",
+            'title' => "Commande n° " . date('ymdHis'),
+            'paniers' => $orders->getOrderProducts()
         ]);
 
         // Load HTML to Dompdf
@@ -53,14 +54,17 @@ class DefaultController extends AbstractController
         // In this case, we want to write the file in the public directory
         $publicDirectory = $this->getParameter('kernel.project_dir'). '/public/factures';
 
+        // Crée un numéro de commande avec la date du jour
+        $numCommande = '/commande' . date('ymdHis') . '.pdf';
+
         // e.g /var/www/project/public/mypdf.pdf
-        $pdfFilepath =  $publicDirectory . '/commande'. 50 .'.pdf';
+        $pdfFilepath =  $publicDirectory . $numCommande;
 
         // Write file to the desired path
         file_put_contents($pdfFilepath, $output);
 
         // Send some text response
-        return $pdfFilepath;
+        return $numCommande;
     }
 
 
@@ -98,8 +102,10 @@ class DefaultController extends AbstractController
         // In this case, we want to write the file in the public directory
         $publicDirectory = $this->getParameter('kernel.project_dir') . '/public/factures';
 
+        $numCommande = '/commande' . $orders->getId() . '.pdf';
+
         // e.g /var/www/project/public/mypdf.pdf
-        $pdfFilepath = $publicDirectory . '/commande' . $orders->getId() . '.pdf';
+        $pdfFilepath = $publicDirectory . $numCommande;
 
         // Write file to the desired path
         file_put_contents($pdfFilepath, $output);
@@ -108,12 +114,26 @@ class DefaultController extends AbstractController
             "Attachment" => false
         ]);
 
-        $orders->setInvoice($pdfFilepath);
+        $orders->setInvoice($numCommande);
         $orders->setPay(true);
         $orders->setPaydate(new \DateTime());
 
         $this->em->persist($orders);
         $this->em->flush();
+    }
+
+    public function show(String $pdfFilepath)
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $dompdf->stream($pdfFilepath, [
+            "Attachment" => false
+        ]);
     }
 
 }

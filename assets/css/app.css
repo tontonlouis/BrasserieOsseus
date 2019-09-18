@@ -8,8 +8,15 @@
     src: url("../fonts/xbones/xbones.ttf");
 }
 
+@font-face {
+    font-family: Lordish;
+    src: url("../fonts/Lordish/Lordish.ttf") format('truetype'),
+         url("../fonts/Lordish/Lordish.otf") format("opentype");
+}
+
 h1,h2,h5 {
-    font-family: xBone;
+    font-family: Lordish;
+    font-size: 3em;
 }
 
 /* RATE */
@@ -66,4 +73,11 @@ ul.notes-echelle.js li.note-focus {
  */
 .disabled {
     visibility: hidden;
+}
+
+/**
+    Transparence produit sold out
+ */
+.soldout {
+    opacity: 0.5;
 }

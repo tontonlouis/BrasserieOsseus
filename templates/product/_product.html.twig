@@ -1,43 +1,84 @@
-{%  cache 'product' ~ product.id product.updatedAt.timestamp %}
-<div class="col-md-4">
-    <div class="card mt-4">
-        <h4 class="card-header"><a
-                    href="{{ path('product.show', {'slug': product.slug ,'id': product.id}) }}">{{ product.name }}</a>
-        </h4>
-        {% if product.new %}
-            <span class="ribbon top-right ribbon-success">
-                          <small>NEWS</small>
-                      </span>
-        {% endif %}
-        <div class="card-body">
-            {% if product.picture %}
-                <a href="{{ path('product.show', {'slug': product.slug ,'id': product.id}) }}"><img
-                            src="{{ vich_uploader_asset(product.picture, 'imageFile') }}" alt=""
-                            class="card-img-top"></a>
-            {% else %}
-                <a href="{{ path('product.show', {'slug': product.slug , 'id': product.id}) }}"><img
-                            src="{{ asset('images/empty.jpg') }}" alt="" class="card-img-top"></a>
-            {% endif %}
-            <div class="card-text mt-2">
-                <h5> {{ product.title }}</h5>
+{#{% cache 'product' ~ product.id product.updatedAt.timestamp %}#}
 
-                {% if product.promo %}
-                    <p class="text-right" style="text-decoration: line-through">
-                        <strong>{{ (product.price)|number_format(2, ',', '.')  }}€</strong>
-                    </p>
-                    <p class="text-right">
-                        <strong>{{ (product.price - (product.price * product.promo)/100)|number_format(2,',', '.')}}€</strong>
-                    </p>
-                    <span class="ribbon bottom-left ribbon-danger">
+    {% if product.soldOut %}
+        <div class="col-md-4">
+            <div class="card mt-4 soldout">
+                <h4 class="card-header">
+                    SOLD OUT
+                </h4>
+                <div class="card-body">
+                    {% if product.picture %}
+                        <img src="{{ vich_uploader_asset(product.picture, 'imageFile') }}" class="card-img-top">
+                    {% else %}
+                        <img src="{{ asset('images/empty.jpg') }}" alt="" class="card-img-top">
+                    {% endif %}
+                    <div class="card-text mt-2">
+                        <h5> {{ product.title }}</h5>
+
+                        {% if product.promo %}
+                            <p class="text-right" style="text-decoration: line-through">
+                                <strong>{{ (product.price)|number_format(2, ',', '.') }}€</strong>
+                            </p>
+                            <p class="text-right">
+                                <strong>{{ (product.price - (product.price * product.promo)/100)|number_format(2,',', '.') }}
+                                    €</strong>
+                            </p>
+                            <span class="ribbon bottom-left ribbon-danger">
                                  <small>Promo :  -{{ product.promo }}%</small>
                              </span>
-                {% else %}
-                    <p class="text-right">
-                        <strong>{{ product.price|number_format(2, ',', '.') }}€</strong>
-                    </p>
-                {% endif %}
+                        {% else %}
+                            <p class="text-right">
+                                <strong>{{ product.price|number_format(2, ',', '.') }}€</strong>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-{% endcache %}
+
+    {% else %}
+        <div class="col-md-4">
+            <div class="card mt-4">
+                <h4 class="card-header"><a
+                            href="{{ path('product.show', {'slug': product.slug ,'id': product.id}) }}">{{ product.name }}</a>
+                </h4>
+                {% if product.new %}
+                    <span class="ribbon top-right ribbon-success">
+                          <small>NEWS</small>
+                      </span>
+                {% endif %}
+                <div class="card-body">
+                    {% if product.picture %}
+                        <a href="{{ path('product.show', {'slug': product.slug ,'id': product.id}) }}"><img
+                                    src="{{ vich_uploader_asset(product.picture, 'imageFile') }}" alt=""
+                                    class="card-img-top"></a>
+                    {% else %}
+                        <a href="{{ path('product.show', {'slug': product.slug , 'id': product.id}) }}"><img
+                                    src="{{ asset('images/empty.jpg') }}" alt="" class="card-img-top"></a>
+                    {% endif %}
+                    <div class="card-text mt-2">
+                        <h5> {{ product.title }}</h5>
+
+                        {% if product.promo %}
+                            <p class="text-right" style="text-decoration: line-through">
+                                <strong>{{ (product.price)|number_format(2, ',', '.') }}€</strong>
+                            </p>
+                            <p class="text-right">
+                                <strong>{{ (product.price - (product.price * product.promo)/100)|number_format(2,',', '.') }}
+                                    €</strong>
+                            </p>
+                            <span class="ribbon bottom-left ribbon-danger">
+                                 <small>Promo :  -{{ product.promo }}%</small>
+                             </span>
+                        {% else %}
+                            <p class="text-right">
+                                <strong>{{ product.price|number_format(2, ',', '.') }}€</strong>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{#{% endcache %}#}
