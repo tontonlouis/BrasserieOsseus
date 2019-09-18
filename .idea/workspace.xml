@@ -2,12 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bac0fe6-379b-423c-acc5-0746b338ffb6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Logo fini.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Logo sans fond blanc pour modif.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo inverse fini.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo-4x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo-drawn-&amp;-typo-side-by-side.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo-drawn-only.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo-typo-only.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo-xl.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/new-banniere.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/twig/50/50478ae99c0b3ea09abf6dfab49f967235e8e4e0762d35f5631e140cde1a9a50.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/twig/50/50478ae99c0b3ea09abf6dfab49f967235e8e4e0762d35f5631e140cde1a9a50.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -156,6 +163,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -180,7 +193,7 @@
       <option name="presentableId" value="Default" />
       <updated>1568715802762</updated>
       <workItem from="1568715807393" duration="1544000" />
-      <workItem from="1568793748756" duration="454000" />
+      <workItem from="1568793748756" duration="2456000" />
     </task>
     <servers />
   </component>
